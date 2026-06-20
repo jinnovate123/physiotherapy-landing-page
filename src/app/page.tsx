@@ -4,7 +4,6 @@ import { Hero } from "@/components/sections/Hero";
 import { DoctorProfile } from "@/components/sections/DoctorProfile";
 import { Treatments } from "@/components/sections/Treatments";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { BeforeAfter } from "@/components/sections/BeforeAfter";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { TreatmentProcess } from "@/components/sections/TreatmentProcess";
 import { Gallery } from "@/components/sections/Gallery";
@@ -34,10 +33,7 @@ export default function Home() {
         {/* 5. Video Testimonials Section */}
         <Testimonials />
 
-        {/* 6. Before & After Results Section */}
-        <BeforeAfter />
-
-        {/* 7. Why Choose Us Section */}
+        {/* 6. Why Choose Us Section */}
         <WhyChooseUs />
 
         {/* 8. Treatment Process Section */}
@@ -61,7 +57,7 @@ export default function Home() {
 
       {/* Sticky WhatsApp Floating Button */}
       <a
-        href="https://wa.me/919876543210"
+        href="https://wa.me/919737920278"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-accent-green text-white shadow-2xl hover:bg-green-600 transition-all duration-300 hover:scale-110 active:scale-95 group"

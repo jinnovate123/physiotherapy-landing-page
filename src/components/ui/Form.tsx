@@ -6,10 +6,11 @@ import { cn } from "@/lib/utils";
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
+  icon?: React.ReactNode;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, label, error, type = "text", ...props }, ref) => {
+  ({ className, label, error, type = "text", icon, ...props }, ref) => {
     return (
       <div className="w-full flex flex-col gap-1.5 text-left">
         {label && (
@@ -17,16 +18,24 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {label}
           </label>
         )}
-        <input
-          ref={ref}
-          type={type}
-          className={cn(
-            "w-full px-4 py-3 bg-white border border-border/80 rounded-xl text-text-dark text-base placeholder:text-text-gray/50 transition-all duration-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10",
-            error && "border-red-500 focus:border-red-500 focus:ring-red-500/10",
-            className
+        <div className="relative group">
+          {icon && (
+            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-text-gray/50 group-focus-within:text-primary transition-colors duration-200">
+              {icon}
+            </div>
           )}
-          {...props}
-        />
+          <input
+            ref={ref}
+            type={type}
+            className={cn(
+              "w-full py-3 bg-white border border-border/80 rounded-xl text-text-dark text-base placeholder:text-text-gray/40 transition-all duration-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10",
+              icon ? "pl-11 pr-4" : "px-4",
+              error && "border-red-500 focus:border-red-500 focus:ring-red-500/10",
+              className
+            )}
+            {...props}
+          />
+        </div>
         {error && <span className="text-xs text-red-500 mt-1">{error}</span>}
       </div>
     );
@@ -38,10 +47,11 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
   options: { value: string; label: string }[];
   error?: string;
+  icon?: React.ReactNode;
 }
 
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, label, options, error, ...props }, ref) => {
+  ({ className, label, options, error, icon, ...props }, ref) => {
     return (
       <div className="w-full flex flex-col gap-1.5 text-left">
         {label && (
@@ -49,11 +59,17 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
             {label}
           </label>
         )}
-        <div className="relative">
+        <div className="relative group">
+          {icon && (
+            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-text-gray/50 group-focus-within:text-primary transition-colors duration-200 z-10">
+              {icon}
+            </div>
+          )}
           <select
             ref={ref}
             className={cn(
-              "w-full px-4 py-3 bg-white border border-border/80 rounded-xl text-text-dark text-base placeholder:text-text-gray/50 transition-all duration-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 appearance-none cursor-pointer",
+              "w-full py-3 bg-white border border-border/80 rounded-xl text-text-dark text-base placeholder:text-text-gray/40 transition-all duration-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 appearance-none cursor-pointer",
+              icon ? "pl-11 pr-10" : "px-4 pr-10",
               error && "border-red-500 focus:border-red-500 focus:ring-red-500/10",
               className
             )}
@@ -65,7 +81,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
               </option>
             ))}
           </select>
-          <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-text-gray">
+          <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-text-gray/50 group-focus-within:text-primary transition-colors duration-200">
             <svg
               className="w-4 h-4"
               fill="none"
@@ -91,10 +107,11 @@ Select.displayName = "Select";
 interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   error?: string;
+  icon?: React.ReactNode;
 }
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, label, error, ...props }, ref) => {
+  ({ className, label, error, icon, ...props }, ref) => {
     return (
       <div className="w-full flex flex-col gap-1.5 text-left">
         {label && (
@@ -102,15 +119,23 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             {label}
           </label>
         )}
-        <textarea
-          ref={ref}
-          className={cn(
-            "w-full px-4 py-3 bg-white border border-border/80 rounded-xl text-text-dark text-base placeholder:text-text-gray/50 transition-all duration-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 min-h-[100px] resize-y",
-            error && "border-red-500 focus:border-red-500 focus:ring-red-500/10",
-            className
+        <div className="relative group">
+          {icon && (
+            <div className="absolute top-3.5 left-4 pointer-events-none text-text-gray/50 group-focus-within:text-primary transition-colors duration-200">
+              {icon}
+            </div>
           )}
-          {...props}
-        />
+          <textarea
+            ref={ref}
+            className={cn(
+              "w-full py-3 bg-white border border-border/80 rounded-xl text-text-dark text-base placeholder:text-text-gray/40 transition-all duration-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 min-h-[100px] resize-y",
+              icon ? "pl-11 pr-4" : "px-4",
+              error && "border-red-500 focus:border-red-500 focus:ring-red-500/10",
+              className
+            )}
+            {...props}
+          />
+        </div>
         {error && <span className="text-xs text-red-500 mt-1">{error}</span>}
       </div>
     );
